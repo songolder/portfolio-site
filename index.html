@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>글로벌전자저울</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      font-family: 'Pretendard', sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { font-family: 'Pretendard', sans-serif; }
 
     nav {
       width: 100%;
@@ -29,18 +22,8 @@
       transition: all 0.3s ease;
     }
 
-    nav.scrolled {
-      background-color: rgba(0, 0, 0, 0.95);
-      padding: 8px 30px;
-    }
-
-    nav img {
-      height: 50px;
-      transition: height 0.3s ease;
-    }
-
-    nav.scrolled img {
-      height: 40px;
+    nav img.logo {
+      height: 45px;
     }
 
     nav ul {
@@ -63,6 +46,7 @@
     .slider {
       position: relative;
       width: 100%;
+      height: 500px;
       overflow: hidden;
     }
 
@@ -70,15 +54,18 @@
       display: flex;
       transition: transform 1s ease-in-out;
       width: 300%;
+      height: 100%;
     }
 
     .slide {
       flex: 1 0 100%;
+      height: 100%;
+      position: relative;
     }
 
     .slide img {
       width: 100%;
-      max-height: 500px;
+      height: 100%;
       object-fit: cover;
       object-position: center;
       display: block;
@@ -86,7 +73,8 @@
 
     .intro-overlay {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       color: white;
@@ -100,12 +88,12 @@
     }
 
     .intro-overlay h1 {
-      font-size: 64px;
+      font-size: 48px;
       animation: fadeIn 1s ease-out forwards;
     }
 
     .intro-overlay h2 {
-      font-size: 32px;
+      font-size: 24px;
       margin: 10px 0 30px;
       animation: fadeIn 1s ease-out 0.5s forwards;
     }
@@ -115,146 +103,60 @@
       padding: 20px 30px;
       border-radius: 12px;
       max-width: 800px;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.6;
       animation: fadeIn 1s ease-out 1s forwards;
     }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 100px 20px;
-      background: #f8f8f8;
-      text-align: center;
+    .slide-logo {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      z-index: 3;
+      height: 50px;
     }
 
-    .feature-box {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 30px 20px;
-      font-weight: bold;
-      font-size: 18px;
-      transition: transform 0.3s;
-      min-height: 150px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .feature-box:hover {
-      transform: scale(1.03);
-    }
-
-    .map-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      padding: 100px 20px;
-      background: #fff;
-      align-items: center;
-      text-align: left;
-    }
-
-    .map-text {
-      max-width: 400px;
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .map-frame {
-      flex: 1;
-      min-width: 300px;
-      max-width: 600px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    footer {
-      background-color: #222;
-      color: #aaa;
-      padding: 30px 20px;
-      font-size: 14px;
-      text-align: center;
-      line-height: 1.6;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-
-  <!-- 네비게이션 -->
-  <nav id="navbar">
-    <a href="#top"><img src="로고_글로벌전자저울.png" alt="로고" /></a>
+  <nav>
+    <img src="로고_글로벌전자저울.png" alt="로고" class="logo">
     <ul>
-      <li><a href="#top">홈</a></li>
+      <li><a href="#">홈</a></li>
       <li><a href="#about">서비스</a></li>
       <li><a href="#portfolio">포트폴리오</a></li>
       <li><a href="#map">오시는 길</a></li>
     </ul>
   </nav>
 
-  <!-- 슬라이드 -->
-  <div id="top" class="slider">
+  <div class="slider">
     <div class="slides-container" id="slides">
-      <div class="slide"><img src="악수.jpg" alt="슬라이드 1" /></div>
-      <div class="slide"><img src="업무.jpg" alt="슬라이드 2" /></div>
-      <div class="slide"><img src="지구.jpg" alt="슬라이드 3" /></div>
+      <div class="slide">
+        <img src="악수.jpg" alt="슬라이드1">
+        <img src="로고_글로벌전자저울.png" alt="로고" class="slide-logo">
+      </div>
+      <div class="slide">
+        <img src="업무.jpg" alt="슬라이드2">
+        <img src="로고_글로벌전자저울.png" alt="로고" class="slide-logo">
+      </div>
+      <div class="slide">
+        <img src="지구.jpg" alt="슬라이드3">
+        <img src="로고_글로벌전자저울.png" alt="로고" class="slide-logo">
+      </div>
     </div>
     <div class="intro-overlay">
       <h1>글로벌전자저울</h1>
       <h2>우리는 계량 그 이상을 만듭니다</h2>
       <div class="paragraph-box">
-        <p>정밀 계측의 시작부터 산업 자동화의 완성까지,<br>
-        글로벌전자저울은 단순한 저울을 넘어 <strong>정확함, 안정성, 그리고 지속가능한 솔루션</strong>을 제공합니다.</p>
-        <p>울산을 거점으로 다양한 산업 현장에 맞춤형 계량 시스템을 구축해왔으며,<br>
-        현장에 최적화된 설계와 설치, 신속한 유지보수로 고객의 신뢰를 쌓아왔습니다.</p>
-        <p><strong>지금 이 순간에도</strong> 글로벌전자저울은 정확한 무게를 넘어,<br>
-        <strong>산업의 흐름을 측정하고, 생산성을 높이는 파트너</strong>가 되기 위해 나아가고 있습니다.</p>
+        정밀 계측부터 산업 자동화까지,<br>
+        고객 맞춤형 솔루션을 제공하는 글로벌 계량기기 전문 기업입니다.
       </div>
     </div>
   </div>
-
-  <!-- 서비스 영역 -->
-  <section id="about" class="features">
-    <div class="feature-box">가정</div>
-    <div class="feature-box">가게</div>
-    <div class="feature-box">산업체</div>
-    <div class="feature-box">맞춤형 솔루션</div>
-    <div class="feature-box">교정</div>
-    <div class="feature-box">기타 산업</div>
-  </section>
-
-  <!-- 포트폴리오 -->
-  <section id="portfolio" style="padding: 100px 20px; text-align: center;">
-    <h2>포트폴리오</h2>
-    <p>아직 내용 없음.</p>
-  </section>
-
-  <!-- 오시는 길 -->
-  <section id="map" class="map-section">
-    <div class="map-text">
-      <h2 style="margin-bottom: 20px;">오시는 길</h2>
-      <p>📍 울산 세무서 도보 2분, 공구상가 도보 5분 거리</p>
-      <p>🕒 운영시간: 08:00 ~ 17:00 (월~금)</p>
-      <p>☎ 언제든지 문의 가능: <strong>0507-1338-8908</strong></p>
-      <p>📧 이메일: <strong>totoppx@naver.com</strong></p>
-    </div>
-    <div class="map-frame">
-      <iframe src="https://map.naver.com/p/entry/place/12108917?c=15.00,0,0,0,dh"
-        width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </section>
-
-  <!-- 푸터 정보 -->
-  <footer>
-    글로벌전자저울<br>
-    대표이사 : 송인재 &nbsp;&nbsp; 사업자등록번호 : 799-30-00655 &nbsp;&nbsp; 주소 : 울산광역시 남구 갈밭로 43<br>
-    대표전화 : 0507-1338-8908<br>
-    이메일 : totoppx@naver.com
-  </footer>
 
   <script>
     const slidesContainer = document.getElementById("slides");
@@ -265,15 +167,6 @@
       slidesContainer.style.transform = `translateX(-${100 * currentIndex}%)`;
     }
     setInterval(slideNext, 5000);
-
-    const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 10) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-    });
   </script>
 </body>
 </html>
