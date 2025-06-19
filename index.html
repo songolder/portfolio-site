@@ -1,123 +1,136 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>글로벌전자저울</title>
   <style>
     body {
       margin: 0;
       font-family: 'Noto Sans KR', sans-serif;
-      background-color: #f4f4f4;
+      background-color: #f5f5f5;
     }
+
+    /* 상단바 스타일 */
     header {
+      background-color: #2c3e50; /* 하단바와 같은 색상 */
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: white;
-      padding: 20px 40px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    header img {
-      height: 50px;
+
+    header h1 {
+      color: white;
+      font-size: 24px;
+      margin: 0;
     }
+
     nav a {
       margin-left: 30px;
+      color: white;
       text-decoration: none;
-      color: #333;
       font-weight: bold;
       transition: color 0.3s;
     }
+
     nav a:hover {
-      color: #007bff;
+      color: #3498db;
     }
+
     .hero {
       position: relative;
       overflow: hidden;
     }
+
     .hero img {
       width: 100%;
       height: 800px;
       object-fit: cover;
     }
-    .overlay {
+
+    .hero-text {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: 1;
-    }
-    .overlay-text {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 20px;
       color: white;
-      font-size: 48px;
-      font-weight: bold;
+      font-size: 36px;
       animation: fadeIn 2s ease-in-out;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translate(-50%, -60%); }
+      100% { opacity: 1; transform: translate(-50%, -50%); }
     }
+
     .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
       padding: 60px 40px;
       background-color: #fff;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
       text-align: center;
     }
-    .service-box {
-      border: 1px solid #ddd;
+
+    .service-item {
+      background-color: #ecf0f1;
+      padding: 40px 20px;
       border-radius: 16px;
-      padding: 30px 20px;
-      background-color: #f9f9f9;
-      transition: transform 0.3s, box-shadow 0.3s;
+      font-weight: bold;
+      font-size: 18px;
+      transition: background-color 0.3s;
     }
-    .service-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    .service-item:hover {
+      background-color: #dcdde1;
     }
-    .map-section {
+
+    #location {
+      background-color: #f0f0f0;
+      padding: 60px 40px;
+    }
+
+    .location-wrapper {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      padding: 60px 40px;
-      background-color: #fff;
+      align-items: flex-start;
       gap: 40px;
+      justify-content: center;
     }
-    .map-description {
-      max-width: 400px;
-      font-size: 18px;
+
+    .location-text {
+      flex: 1 1 300px;
+      font-size: 16px;
       line-height: 1.6;
     }
-    .map-embed {
-      border: 2px solid #ccc;
-      border-radius: 16px;
-      overflow: hidden;
-      flex-grow: 1;
-      min-width: 640px;
-      height: 450px;
+
+    .location-map iframe {
+      width: 640px;
+      height: 400px;
+      border: 3px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
     }
+
     footer {
-      background-color: #333;
+      background-color: #2c3e50;
       color: white;
-      padding: 40px;
+      text-align: center;
+      padding: 30px 20px;
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="로고_글로벌전자저울.png" alt="글로벌전자저울 로고">
+    <h1>글로벌전자저울</h1>
     <nav>
       <a href="#services">서비스</a>
       <a href="#portfolio">포트폴리오</a>
@@ -125,43 +138,48 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="overlay">
-      <div class="overlay-text">글로벌전자저울, 우리는 계량 그 이상을 만듭니다</div>
-    </div>
+  <div class="hero">
     <img src="악수.jpg" alt="대표 이미지">
-  </section>
-
-  <section class="services" id="services">
-    <div class="service-box">가정</div>
-    <div class="service-box">가게</div>
-    <div class="service-box">매장</div>
-    <div class="service-box">산업</div>
-    <div class="service-box">교정</div>
-    <div class="service-box">맞춤형 자동화</div>
-  </section>
-
-  <section class="services" id="portfolio">
-    <div class="service-box">포트폴리오 준비중입니다.</div>
-  </section>
-
-  <section class="map-section" id="location">
-    <div class="map-description">
-      <h2>오시는 길</h2>
-      <p>울산 세무서 도보 2분<br>공구상가 도보 5분<br><br>
-      운영시간: 08:00 ~ 17:00 (월~금)<br>
-      전화: 0507-1338-8908<br>
-      이메일: totoppx@naver.com<br>
-      언제든지 전화로 문의해주세요!</p>
+    <div class="hero-text">
+      글로벌전자저울<br>
+      우리는 계량 그 이상을 만듭니다
     </div>
-    <div class="map-embed">
-      <iframe src="https://naver.me/xF2kWsUZ" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <section id="services" class="services">
+    <div class="service-item">가정</div>
+    <div class="service-item">가게</div>
+    <div class="service-item">매장</div>
+    <div class="service-item">산업</div>
+    <div class="service-item">교정</div>
+    <div class="service-item">맞춤형 자동화</div>
+  </section>
+
+  <section id="portfolio" class="services">
+    <div class="service-item">준비중입니다</div>
+  </section>
+
+  <section id="location">
+    <div class="location-wrapper">
+      <div class="location-text">
+        <h2>오시는 길</h2>
+        <p>울산 세무서 도보 2분<br>
+        공구상가 도보 5분<br><br>
+        운영시간: 08:00 ~ 17:00 (월~금)<br>
+        시간 관계없이 언제든지 전화문의 가능<br><br>
+        전화: 0507-1338-8908<br>
+        이메일: totoppx@naver.com</p>
+      </div>
+      <div class="location-map">
+        <iframe src="https://map.naver.com/p/entry/place/1535214261?c=15.00,0,0,0,dh" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
   </section>
 
   <footer>
-    글로벌전자저울 ｜ 대표이사 송인재 ｜ 사업자 등록번호 799-30-00655<br>
-    주소: 울산광역시 남구 갈밭로 43 ｜ 대표전화번호: 052-276-8908
+    글로벌전자저울 | 대표이사 송인재 | 사업자등록번호 799-30-00655<br>
+    주소: 울산광역시 남구 갈밭로 43<br>
+    대표전화: 0507-1338-8908 | 이메일: totoppx@naver.com
   </footer>
 </body>
 </html>
