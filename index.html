@@ -1,198 +1,231 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>글로벌전자저울</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: sans-serif;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
       background-color: #f5f5f5;
     }
+
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: white;
-      padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      z-index: 999;
+      padding: 20px 40px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
+
     header img {
-      height: 40px;
+      height: 50px;
     }
+
     nav a {
       margin-left: 30px;
       text-decoration: none;
       color: #333;
       font-weight: bold;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
     }
+
     nav a:hover {
-      color: #007BFF;
+      color: #007bff;
     }
+
     .hero {
       position: relative;
-      width: 100%;
       height: 800px;
       overflow: hidden;
     }
+
     .hero img {
+      width: 100%;
+      height: 800px;
+      object-fit: cover;
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       opacity: 0;
-      transition: opacity 1s ease;
+      transition: opacity 1s ease-in-out;
     }
+
     .hero img.active {
       opacity: 1;
     }
-    .overlay {
+
+    .hero-text {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 30px 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
       color: white;
+      font-size: 36px;
       text-align: center;
-      font-size: 2rem;
-      animation: fadeIn 2s ease-in-out forwards;
+      animation: fadeIn 2s ease-in-out;
     }
+
     @keyframes fadeIn {
-      0% { opacity: 0; transform: translate(-50%, -60%); }
-      100% { opacity: 1; transform: translate(-50%, -50%); }
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
     }
+
     .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 100px 40px 40px;
-      background-color: #fff;
-    }
-    .services div {
-      background-color: #f0f0f0;
-      padding: 40px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.1rem;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .services div:hover {
-      background-color: #d9ecff;
-    }
-    .portfolio {
-      padding: 80px 40px;
-      text-align: center;
-    }
-    .portfolio h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .portfolio p {
-      color: #777;
-    }
-    .location {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
       padding: 60px 40px;
       background-color: #fff;
     }
-    .location .info {
-      flex: 1 1 300px;
+
+    .service-box {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #fafafa;
+      transition: transform 0.3s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .portfolio {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .portfolio h2 {
+      font-size: 32px;
       margin-bottom: 20px;
     }
-    .location .map {
-      flex: 1 1 400px;
+
+    .portfolio p {
+      font-size: 18px;
+      color: #666;
     }
-    .location iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-    }
-    footer {
-      padding: 30px 40px;
-      background-color: #222;
-      color: white;
-      font-size: 0.9rem;
+
+    .map-section {
+      background-color: #f0f0f0;
+      padding: 60px 40px;
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .map-info {
+      max-width: 400px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .map-info h3 {
+      margin-bottom: 10px;
+    }
+
+    .map iframe {
+      border: 0;
+      width: 100%;
+      max-width: 500px;
+      height: 300px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <img src="로고_글로벌전자저울.png" alt="로고">
+    <img src="로고_글로벌전자저울.png" alt="글로벌전자저울 로고">
     <nav>
       <a href="#services">서비스</a>
       <a href="#portfolio">포트폴리오</a>
-      <a href="#location">오시는 길</a>
+      <a href="#map">오시는 길</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <img src="악수.jpg" class="active" alt="슬라이드1">
-    <img src="업무.jpg" alt="슬라이드2">
-    <img src="지구.jpg" alt="슬라이드3">
-    <div class="overlay">
-      글로벌전자저울은 정밀한 계량과 자동화를 통해 산업의 미래를 설계합니다.
+  <div class="hero">
+    <img src="악수.jpg" class="active" alt="슬라이드 이미지1">
+    <img src="업무.jpg" alt="슬라이드 이미지2">
+    <img src="지구.jpg" alt="슬라이드 이미지3">
+    <div class="hero-text">
+      글로벌전자저울<br>계량 그 이상을 만듭니다
     </div>
+  </div>
+
+  <section id="services" class="services">
+    <div class="service-box">가정</div>
+    <div class="service-box">가게</div>
+    <div class="service-box">매장</div>
+    <div class="service-box">산업</div>
+    <div class="service-box">교정</div>
+    <div class="service-box">맞춤형 자동화</div>
   </section>
 
-  <section class="services" id="services">
-    <div>가정</div>
-    <div>가게</div>
-    <div>매장</div>
-    <div>산업</div>
-    <div>교정</div>
-    <div>맞춤형 자동화</div>
-  </section>
-
-  <section class="portfolio" id="portfolio">
+  <section id="portfolio" class="portfolio">
     <h2>포트폴리오</h2>
-    <p>현재 포트폴리오 준비 중입니다.</p>
+    <p>현재 준비 중입니다.</p>
   </section>
 
-  <section class="location" id="location">
-    <div class="info">
+  <section id="map" class="map-section">
+    <div class="map-info">
       <h3>오시는 길</h3>
-      <p>울산 세무서 도보 2분<br>공구상가 도보 5분<br>운영시간: 평일 08:00 ~ 17:00<br>언제든지 전화로 문의 주세요</p>
-      <p>☎ 0507-1338-8908<br>✉ totoppx@naver.com</p>
+      <p>울산 세무서 도보 2분<br>공구상가 도보 5분 거리<br><br>
+      운영시간: 오전 8시 ~ 오후 5시 (월~금)<br>전화문의: 0507-1338-8908<br>이메일: totoppx@naver.com</p>
     </div>
     <div class="map">
-      <iframe src="https://map.naver.com/p/entry/place/11572621?c=15.00,0,0,0,dh" allowfullscreen></iframe>
+      <iframe src="https://map.naver.com/p/entry/place/37691194?c=15.00,0,0,0,dh" allowfullscreen loading="lazy"></iframe>
     </div>
   </section>
 
   <footer>
-    <div>글로벌전자저울 | 대표 송인재 | 사업자등록번호 799-30-00655</div>
-    <div>주소: 울산광역시 남구 갈밭로 43</div>
-    <div>대표전화: 052-276-8908</div>
+    글로벌전자저울 | 대표이사: 송인재 | 사업자등록번호: 799-30-00655<br>
+    주소: 울산광역시 남구 갈밭로 43 | 전화: 0507-1338-8908
   </footer>
 
   <script>
+    const slides = document.querySelectorAll('.hero img');
     let current = 0;
-    const slides = document.querySelectorAll(".hero img");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+          slide.classList.add('active');
+        }
+      });
+    }
+
     setInterval(() => {
-      slides[current].classList.remove("active");
       current = (current + 1) % slides.length;
-      slides[current].classList.add("active");
+      showSlide(current);
     }, 5000);
   </script>
 </body>
+
 </html>
