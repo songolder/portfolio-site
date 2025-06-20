@@ -42,34 +42,29 @@
     }
 
     /* 메인 이미지 슬라이드 */
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 800px;
-      overflow: hidden;
-    }
+.slider {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+}
 
-    .slides {
-      display: flex;
-      width: 300%;
-      height: 100%;
-      animation: slide 15s infinite;
-    }
+.slider img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
 
-    .slides img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.slider img.active {
+  opacity: 1;
+  z-index: 1;
+}
 
-    @keyframes slide {
-      0% { transform: translateX(0%); }
-      33% { transform: translateX(0%); }
-      36% { transform: translateX(-100%); }
-      66% { transform: translateX(-100%); }
-      69% { transform: translateX(-200%); }
-      100% { transform: translateX(-200%); }
-    }
 
     /* 소개 텍스트 */
     .intro {
@@ -195,6 +190,28 @@
   <footer>
     글로벌전자저울 | 대표 송인재 | 사업자등록번호 799-30-00655 | 주소 울산광역시 남구 갈밭로 43 | 대표전화 052-276-8908
   </footer>
+  <script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slider img');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) {
+        slide.classList.add('active');
+      }
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  showSlide(currentSlide);
+  setInterval(nextSlide, 5000);
+</script>
+
 </body>
 
 </html>
