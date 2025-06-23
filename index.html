@@ -46,26 +46,30 @@
     }
 
     /* 메인 이미지 슬라이드 */
-   .slider {
+.slider {
   position: relative;
   width: 100%;
   height: 800px;
   overflow: hidden;
 }
 
-.slides {
-  display: flex;
-  width: 300%; /* 3장이므로 100% x 3 */
+.slider img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   height: 100%;
-  transition: transform 1s ease-in-out;
+  width: auto;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
-.slides img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  flex-shrink: 0;
+.slider img.active {
+  opacity: 1;
+  z-index: 1;
 }
+
 
 
     /* 소개 텍스트 */
