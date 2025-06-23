@@ -72,6 +72,7 @@
 
 
 
+
     /* 소개 텍스트 */
     .intro {
       position: absolute;
@@ -160,14 +161,13 @@
     </nav>
   </header>
 
-  <div class="slider">
-    <div class="slides">
-      <img src="악수.jpg" alt="슬라이드1">
-      <img src="업무.jpg" alt="슬라이드2">
-      <img src="지구.jpg" alt="슬라이드3">
-    </div>
-    <div class="intro">글로벌전자저울 - 계량 그 이상을 만듭니다</div>
-  </div>
+<div class="slider">
+  <img src="악수.jpg" alt="슬라이드1" class="active">
+  <img src="업무.jpg" alt="슬라이드2">
+  <img src="지구.jpg" alt="슬라이드3">
+  <div class="intro">글로벌전자저울 - 계량 그 이상을 만듭니다</div>
+</div>
+
 
   <section id="services" class="services">
     <div class="service-box">가정</div>
@@ -200,21 +200,26 @@
 
 <script>
   let currentSlide = 0;
-  const slidesContainer = document.querySelector('.slides');
-  const totalSlides = document.querySelectorAll('.slides img').length;
+  const slides = document.querySelectorAll('.slider img');
 
   function showSlide(index) {
-    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) {
+        slide.classList.add('active');
+      }
+    });
   }
 
   function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
+    currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
   }
 
   showSlide(currentSlide);
   setInterval(nextSlide, 5000);
 </script>
+
 
 </body>
 
